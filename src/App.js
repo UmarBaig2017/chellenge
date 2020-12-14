@@ -1,24 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
 import './App.css';
-
+import moment from "moment"
+import Dash from "./dash"
+import CountDown from 'ant-design-pro/lib/CountDown';
+import { Statistic, Card, Row, Col } from 'antd';
+const { Countdown } = Statistic;
 function App() {
+  const [time, setTime] = useState(new Date());
+  
+  const deadline = Date.now() + 1000 * 60 * 60 * 24 * 2 + 1000 * 30;
+  useEffect(() => {
+    // setTime(new Date())
+  });
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* <Dash time={time}/> */}
+     
+      <CountDown style={{ fontSize: 20 }}  target={deadline} />
+      <Row gutter={16}>
+      {/* <Col span={12}>
+      <Countdown title="Countdown" value={deadline}  />
+    </Col> */}
+    <Col span={12}>
+      <Countdown title="Million Seconds" value={deadline} format="DD :HH:mm" />
+    </Col>
+  </Row>
     </div>
   );
 }
